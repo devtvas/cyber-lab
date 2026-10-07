@@ -1,51 +1,105 @@
-# Lab Methodology
+# SOC Lab Methodology
 
-The Cyber Lab follows a simple security-engineering workflow.
+The Cyber Lab follows an analyst-oriented workflow.
 
 ## 1. Define the objective
 
-Every exercise starts with a concrete question or security problem.
+Start with a concrete security question.
 
 Example:
 
-> How can suspicious authentication activity be identified from Linux logs?
+> How can suspicious SSH authentication activity be detected and triaged?
 
 ## 2. Build a controlled environment
 
-Use local virtual machines, containers, intentionally vulnerable applications, CTF platforms or other environments where testing is explicitly authorized.
+Use local VMs, containers, intentionally vulnerable applications or other explicitly authorized environments.
 
-## 3. Collect evidence
+## 3. Generate or collect evidence
 
-Record commands, configuration, logs, alerts and relevant observations.
+Record:
 
-Never store real credentials, API keys, private tokens or personal data in the repository.
+- logs;
+- alerts;
+- timestamps;
+- source/destination;
+- usernames;
+- processes;
+- IPs;
+- domains;
+- hashes, when relevant;
+- commands;
+- screenshots or sanitized outputs.
 
-## 4. Analyze
+Never commit credentials, secrets, private tokens or personal data.
 
-Explain what happened, why it happened and how an analyst would validate the finding.
+## 4. Triage
 
-## 5. Assess risk
+Determine:
 
-Describe the potential security impact using clear technical language.
+- Is the event suspicious?
+- Is it a false positive?
+- What asset is affected?
+- What user/process is involved?
+- What is the potential impact?
+- What additional evidence is required?
 
-## 6. Remediate
+## 5. Investigate
 
-Document defensive actions and explain their expected effect.
+Build a timeline and correlate available evidence.
 
-## 7. Review
+Look for:
 
-Record lessons learned and identify the next experiment.
+- repeated behavior;
+- related authentication events;
+- process activity;
+- network connections;
+- IOCs;
+- persistence indicators;
+- lateral movement indicators.
 
----
+## 6. Classify
 
-## Evidence Standard
+When appropriate, document:
 
-A good lab should allow another technical person to understand:
+- severity;
+- confidence;
+- affected asset;
+- incident category;
+- MITRE ATT&CK technique.
 
-- what was tested;
-- why it was tested;
-- what evidence was collected;
-- what the evidence means;
-- what action should be taken.
+## 7. Respond
 
-The objective is not to collect tools. The objective is to demonstrate **security reasoning**.
+For laboratory scenarios, document appropriate defensive actions such as:
+
+- blocking;
+- isolating;
+- disabling a test account;
+- terminating a malicious process;
+- removing persistence;
+- patching;
+- changing configuration.
+
+## 8. Report
+
+Every investigation should produce a concise analyst report:
+
+- Executive summary
+- Timeline
+- Evidence
+- Analysis
+- Impact
+- MITRE mapping
+- Response
+- Recommendations
+- Lessons learned
+
+## 9. Review
+
+Ask:
+
+- Could the alert have been detected earlier?
+- Was the alert too noisy?
+- What additional telemetry would help?
+- Could part of the response be automated?
+
+The goal is to demonstrate **security reasoning**, not simply tool usage.
